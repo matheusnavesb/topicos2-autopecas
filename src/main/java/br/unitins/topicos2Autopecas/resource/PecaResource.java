@@ -56,5 +56,8 @@ public abstract class PecaResource<S extends PecaService, DTO extends PecaDTO> {
         return Response.ok().entity(service.findById(id)).build();
     }
 
-
+    @GET
+    public Response findAll() {
+        return Response.ok(service.getAll()).build();
+    }
 }

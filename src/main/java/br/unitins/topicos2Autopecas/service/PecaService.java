@@ -1,18 +1,21 @@
 package br.unitins.topicos2Autopecas.service;
 
+import java.util.List;
+
 import br.unitins.topicos2Autopecas.dto.PecaDTO;
 import br.unitins.topicos2Autopecas.dto.PecaResponseDTO;
 
 @SuppressWarnings("rawtypes")
-public interface PecaService<DTO extends PecaDTO, RDTO extends PecaResponseDTO> {
+public interface PecaService<DTO extends PecaDTO, ResponseDTO extends PecaResponseDTO> {
 
-    RDTO create(DTO dto);
+    ResponseDTO create(DTO dto);
 
-    RDTO update(Long id, DTO dto);
+    ResponseDTO update(Long id, DTO dto);
 
     void delete(Long id);
 
-    RDTO findById(Long id);
+    ResponseDTO findById(Long id);
 
-    //List<PecaResponseDTO> getAll();
+    List<ResponseDTO> getAll();
+
 }

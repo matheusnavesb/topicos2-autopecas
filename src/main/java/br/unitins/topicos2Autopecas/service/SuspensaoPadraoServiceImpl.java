@@ -1,5 +1,8 @@
 package br.unitins.topicos2Autopecas.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import br.unitins.topicos2Autopecas.dto.SuspensaoPadraoDTO;
 import br.unitins.topicos2Autopecas.dto.SuspensaoPadraoResponseDTO;
 
@@ -51,6 +54,12 @@ public class SuspensaoPadraoServiceImpl implements PecaService<SuspensaoPadraoDT
     @Override
     public SuspensaoPadraoResponseDTO findById(Long id) {
         return SuspensaoPadraoResponseDTO.from(repository.findById(id));
+    }
+
+    @Override
+    public List<SuspensaoPadraoResponseDTO> getAll() {
+        List<SuspensaoPadrao> list = repository.findAll2();
+        return list.stream().map(e -> SuspensaoPadraoResponseDTO.from(e)).collect(Collectors.toList());
     }
 
 }
