@@ -8,16 +8,6 @@ public class SuspensaoPadrao extends Peca{
     private String dadosTecnicos;
     private String compatibilidade;
 
-    // public SuspensaoPadrao(String nome, Double preco, String descricao, String dadosTecnicos, String compatibilidade) {
-    //     super();
-    //     this.dadosTecnicos = dadosTecnicos;
-    //     this.compatibilidade = compatibilidade;
-    // }
-
-    // public SuspensaoPadrao() {
-    //     
-    // }
-
     public String getDadosTecnicos() {
         return dadosTecnicos;
     }
