@@ -5,14 +5,15 @@ import br.unitins.topicos2Autopecas.model.SuspensaoPadrao;
 
 public class SuspensaoPadraoResponseDTO extends PecaResponseDTO<Peca> {
 
-    private final String dadosTecnicos;
-    private final String compatibilidade;
+    //private final String dadosTecnicos;
 
-    public SuspensaoPadraoResponseDTO(Long id, String nome, Double preco, String descricao, String dadosTecnicos,
-            String compatibilidade) {
+    private final String compatibilidade;
+    private final DadosTecnicosResponseDTO dadosTecnicos;
+
+    public SuspensaoPadraoResponseDTO(Long id, String nome, Double preco, String descricao, String compatibilidade, DadosTecnicosResponseDTO dadosTecnicos) {
         super(id, nome, preco, descricao);
-        this.dadosTecnicos = dadosTecnicos;
         this.compatibilidade = compatibilidade;
+        this.dadosTecnicos = dadosTecnicos;
     }
 
     public static SuspensaoPadraoResponseDTO from(SuspensaoPadrao peca) {
@@ -22,20 +23,25 @@ public class SuspensaoPadraoResponseDTO extends PecaResponseDTO<Peca> {
                     peca.getNome(),
                     peca.getPreco(),
                     peca.getDescricao(),
-                    peca.getDadosTecnicos(),
-                    peca.getCompatibilidade());
+                    //peca.getDadosTecnicos(),
+                    peca.getCompatibilidade(),
+                    DadosTecnicosResponseDTO.valueOf(peca.getDadosTecnicos()));
 
         } catch (NullPointerException e) {
             return null;
         }
     }
 
-    public String getDadosTecnicos() {
-        return dadosTecnicos;
-    }
+    // public String getDadosTecnicos() {
+    //     return dadosTecnicos;
+    // }
 
     public String getCompatibilidade() {
         return compatibilidade;
+    }
+
+    public DadosTecnicosResponseDTO getDadosTecnicos() {
+        return dadosTecnicos;
     }
 
 }

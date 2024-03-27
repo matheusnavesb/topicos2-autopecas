@@ -7,6 +7,7 @@ import br.unitins.topicos2Autopecas.dto.SuspensaoPadraoDTO;
 import br.unitins.topicos2Autopecas.dto.SuspensaoPadraoResponseDTO;
 
 import br.unitins.topicos2Autopecas.model.SuspensaoPadrao;
+import br.unitins.topicos2Autopecas.repository.DadosTecnicosRepository;
 import br.unitins.topicos2Autopecas.repository.SuspensaoPadraoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -18,10 +19,23 @@ public class SuspensaoPadraoServiceImpl implements PecaService<SuspensaoPadraoDT
     @Inject
     SuspensaoPadraoRepository repository;
 
+    @Inject
+    DadosTecnicosRepository dadosTecnicosRepository; 
+
     @Override
     @Transactional
     public SuspensaoPadraoResponseDTO create(SuspensaoPadraoDTO dto) {
-        SuspensaoPadrao peca = dto.valueOf();
+
+        //SuspensaoPadrao peca = dto.valueOf();
+
+        SuspensaoPadrao peca = new SuspensaoPadrao();
+
+        peca.setNome(dto.getNome());
+        peca.setPreco(dto.getPreco());
+        peca.setDescricao(dto.getDescricao());
+        peca.setCompatibilidade(dto.getCompatibilidade());
+        peca.setDadosTecnicos(dadosTecnicosRepository.findById(dto.getIdDadosTecnicos()));
+
         repository.persist(peca);
         return SuspensaoPadraoResponseDTO.from(peca);
     }
@@ -30,16 +44,22 @@ public class SuspensaoPadraoServiceImpl implements PecaService<SuspensaoPadraoDT
     @Transactional
     public SuspensaoPadraoResponseDTO update(Long id, SuspensaoPadraoDTO dto) {
         SuspensaoPadrao peca = repository.findById(id);
-        if (dto.getNome() != null)
-            peca.setNome(dto.getNome());
-        if (dto.getPreco() != null)
-            peca.setPreco(dto.getPreco());
-        if (dto.getDescricao() != null)
-            peca.setDescricao(dto.getDescricao());
-        if (dto.getDadosTecnicos() != null)
-            peca.setDadosTecnicos(dto.getDadosTecnicos());
-        if (dto.getCompatibilidade() != null)
-            peca.setCompatibilidade(dto.getCompatibilidade());
+        // if (dto.getNome() != null)
+        //     peca.setNome(dto.getNome());
+        // if (dto.getPreco() != null)
+        //     peca.setPreco(dto.getPreco());
+        // if (dto.getDescricao() != null)
+        //     peca.setDescricao(dto.getDescricao());
+        // if (dto.getDadosTecnicos() != null)
+        //     peca.setDadosTecnicos(dto.getDadosTecnicos());
+        // if (dto.getCompatibilidade() != null)
+        //     peca.setCompatibilidade(dto.getCompatibilidade());
+
+        peca.setNome(dto.getNome());
+        peca.setPreco(dto.getPreco());
+        peca.setDescricao(dto.getDescricao());
+        peca.setCompatibilidade(dto.getCompatibilidade());
+        //peca.setDadosTecnicos(dadosTecnicosRepository.findById(dto.getIdDadosTecnicos()));
 
         repository.persistAndFlush(peca);
         return SuspensaoPadraoResponseDTO.from(peca);
