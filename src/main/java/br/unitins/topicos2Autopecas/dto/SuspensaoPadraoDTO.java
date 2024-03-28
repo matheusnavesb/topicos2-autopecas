@@ -5,9 +5,6 @@ import jakarta.validation.constraints.NotBlank;
 
 public class SuspensaoPadraoDTO extends PecaDTO<SuspensaoPadrao> {
 
-    // @NotBlank
-    // private final String dadosTecnicos;
-
     @NotBlank
     private final String compatibilidade;
 
@@ -27,17 +24,12 @@ public class SuspensaoPadraoDTO extends PecaDTO<SuspensaoPadrao> {
         peca.setNome(getNome());
         peca.setPreco(getPreco());
         peca.setDescricao(getDescricao());
-        // peca.setDadosTecnicos(getDadosTecnicos());
         peca.setCompatibilidade(getCompatibilidade());
         DadosTecnicosResponseDTO.valueOf(peca.getDadosTecnicos());
 
-        // DadosTecnicosResponseDTO.valueOf(peca.getDadosTecnicos());
         return peca;
     }
 
-    // public String getDadosTecnicos() {
-    // return dadosTecnicos;
-    // }
 
     public String getCompatibilidade() {
         return compatibilidade;

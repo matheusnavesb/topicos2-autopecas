@@ -2,25 +2,16 @@ package br.unitins.topicos2Autopecas.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class SuspensaoPadrao extends Peca{
-    
-    //private String dadosTecnicos;
 
     private String compatibilidade;
 
     @JoinColumn(name = "id_dadosTecnicos")
-    @OneToOne
+    @ManyToOne
     private DadosTecnicos dadosTecnicos;
-
-    // public String getDadosTecnicos() {
-    //     return dadosTecnicos;
-    // }
-    // public void setDadosTecnicos(String dadosTecnicos) {
-    //     this.dadosTecnicos = dadosTecnicos;
-    // }
 
     public String getCompatibilidade() {
         return compatibilidade;
@@ -39,5 +30,4 @@ public class SuspensaoPadrao extends Peca{
     }
     
 
-    
 }
